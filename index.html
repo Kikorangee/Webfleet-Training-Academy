@@ -622,25 +622,7 @@ var sorted = Object.keys(cats).sort(function(a, b) {
       var main=document.querySelector('.main-inner');
       main.querySelectorAll('.section').forEach(function(s){s.remove();});
 
-      // Genre pills
-      var gb=document.getElementById('genreBar');
-      gb.innerHTML='<button class="genre-pill active" data-cat="all">All</button>';
-      sorted.forEach(function(name){
-        var pill=document.createElement('button');pill.className='genre-pill';pill.dataset.cat=name;pill.textContent=name;
-        pill.addEventListener('click',function(){
-          document.querySelectorAll('.genre-pill').forEach(function(p){p.classList.remove('active');});
-          pill.classList.add('active');
-          var target=document.getElementById(name.toLowerCase().replace(/[&\s]+/g,'-'));
-          if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
-        });
-        gb.appendChild(pill);
-      });
-      gb.querySelector('[data-cat="all"]').addEventListener('click',function(){
-        document.querySelectorAll('.genre-pill').forEach(function(p){p.classList.remove('active');});
-        this.classList.add('active');
-        window.scrollTo({top:document.querySelector('.main-inner').offsetTop,behavior:'smooth'});
-      });
-
+    
       sorted.forEach(function(catName,ci){
         var vids=cats[catName];if(!vids.length)return;
         var sec=document.createElement('section');sec.className='section';sec.id=catName.toLowerCase().replace(/[&\s]+/g,'-');
